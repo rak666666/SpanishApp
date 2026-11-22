@@ -1,5 +1,7 @@
 
-const API_URL = "http://localhost:3000/quiz";
+import API_URL from "./api";
+
+const QUIZ_URL = `${API_URL}/quiz`;
 
 async function sendRequest(url, options = {}) {
     const token = localStorage.getItem("token");
@@ -27,11 +29,11 @@ export async function getQuizWords(categoryId) {
         ? `?categoryId=${categoryId}`
         : "";
 
-    return sendRequest(`${API_URL}/words${query}`);
+    return sendRequest(`${QUIZ_URL}/words${query}`);
 }
 
 export async function saveQuizResult(score, totalQuestions, answers) {
-    return sendRequest(`${API_URL}/results`, {
+    return sendRequest(`${QUIZ_URL}/results`, {
         method: "POST",
         body: JSON.stringify({
             score,
@@ -42,6 +44,5 @@ export async function saveQuizResult(score, totalQuestions, answers) {
 }
 
 export async function getQuizHistory() {
-    return sendRequest(`${API_URL}/history`);
+    return sendRequest(`${QUIZ_URL}/history`);
 }
-

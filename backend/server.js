@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const db = require("./config/db");
+require("dotenv").config();
 
 const categoryRoutes = require("./routes/categoryRoutes");
 const wordRoutes = require("./routes/wordRoutes");

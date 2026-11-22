@@ -1,7 +1,10 @@
-const API_URL = "http://localhost:3000/auth";
+
+import API_URL from "./api";
+
+const AUTH_URL = `${API_URL}/auth`;
 
 export async function loginUser(email, password) {
-    const response = await fetch(`${API_URL}/login`, {
+    const response = await fetch(`${AUTH_URL}/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -20,8 +23,9 @@ export async function loginUser(email, password) {
 
     return data;
 }
+
 export async function registerUser(username, email, password) {
-    const response = await fetch(`${API_URL}/register`, {
+    const response = await fetch(`${AUTH_URL}/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

@@ -1,9 +1,12 @@
-const API_URL = "http://localhost:3000/statistics";
+
+import API_URL from "./api";
+
+const STATISTICS_URL = `${API_URL}/statistics`;
 
 export async function getStatistics() {
     const token = localStorage.getItem("token");
 
-    const response = await fetch(API_URL, {
+    const response = await fetch(STATISTICS_URL, {
         headers: {
             Authorization: `Bearer ${token}`
         }

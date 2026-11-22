@@ -1,5 +1,7 @@
 
-const API_URL = "http://localhost:3000/users";
+import API_URL from "./api";
+
+const USERS_URL = `${API_URL}/users`;
 
 async function sendRequest(url, options = {}) {
     const token = localStorage.getItem("token");
@@ -23,18 +25,18 @@ async function sendRequest(url, options = {}) {
 }
 
 export async function getUsers() {
-    return sendRequest(API_URL);
+    return sendRequest(USERS_URL);
 }
 
 export async function updateUserRole(userId, role) {
-    return sendRequest(`${API_URL}/${userId}/role`, {
+    return sendRequest(`${USERS_URL}/${userId}/role`, {
         method: "PUT",
         body: JSON.stringify({ role })
     });
 }
 
 export async function deleteUser(userId) {
-    return sendRequest(`${API_URL}/${userId}`, {
+    return sendRequest(`${USERS_URL}/${userId}`, {
         method: "DELETE"
     });
 }

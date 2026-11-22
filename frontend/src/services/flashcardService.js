@@ -1,4 +1,7 @@
-const API_URL = "http://localhost:3000/flashcards";
+
+import API_URL from "./api";
+
+const FLASHCARDS_URL = `${API_URL}/flashcards`;
 
 async function sendRequest(url, options = {}) {
     const token = localStorage.getItem("token");
@@ -26,11 +29,11 @@ export async function getFlashcards(categoryId) {
         ? `?categoryId=${categoryId}`
         : "";
 
-    return sendRequest(`${API_URL}${query}`);
+    return sendRequest(`${FLASHCARDS_URL}${query}`);
 }
 
 export async function saveFlashcardProgress(wordId, known) {
-    return sendRequest(`${API_URL}/progress`, {
+    return sendRequest(`${FLASHCARDS_URL}/progress`, {
         method: "POST",
         body: JSON.stringify({
             wordId,
