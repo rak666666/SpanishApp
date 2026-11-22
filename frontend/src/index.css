@@ -1,0 +1,218 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f1ea;
+    color: #252525;
+}
+
+/* LOGOWANIE */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-container > p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-container input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.login-container button {
+    padding: 13px;
+    margin-top: 10px;
+    background-color: #c75b39;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-container a {
+    color: #c75b39;
+    text-decoration: none;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    min-height: 100vh;
+    padding: 40px;
+    background-color: #f4f1ea;
+}
+
+.dashboard h1 {
+    margin-bottom: 40px;
+}
+
+.dashboard h2 {
+    margin-bottom: 10px;
+}
+
+.dashboard p {
+    margin-bottom: 15px;
+}
+
+.dashboard button {
+    padding: 12px 20px;
+    background-color: #c75b39;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* NAVBAR */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.navbar-logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #c75b39;
+    text-decoration: none;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.navbar-links a {
+    color: #252525;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.navbar-links a:hover {
+    color: #c75b39;
+}
+
+.navbar button {
+    padding: 10px 16px;
+    background-color: #c75b39;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* KARTY */
+
+.learning-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.learning-card {
+    flex: 1 1 200px;
+    min-width: 0;
+}
+
+/* TELEFONY I TABLETY */
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 16px 20px;
+    }
+
+    .navbar-links {
+        gap: 15px;
+    }
+
+    .dashboard {
+        padding: 25px 20px;
+    }
+
+    .dashboard h1 {
+        margin-bottom: 25px;
+        font-size: 26px;
+    }
+
+    .learning-cards {
+        gap: 12px;
+    }
+}
+
+/* MAŁE TELEFONY */
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .navbar-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .navbar-logo {
+        font-size: 24px;
+    }
+
+    .dashboard {
+        padding: 20px 15px;
+    }
+
+    .dashboard h1 {
+        font-size: 23px;
+    }
+
+    .learning-card {
+        flex: 1 1 100%;
+    }
+
+    .login-container {
+        padding: 25px 20px;
+    }
+}
