@@ -39,7 +39,7 @@ function App() {
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+            <Route path="/dashboard" element={<ProtectedRoute><DashBoardPage /></ProtectedRoute>} />
             <Route path="/words" element={<ProtectedRoute><WordsPage /></ProtectedRoute>} />
             <Route path="/manage-words" element={<ProtectedRoute allowedRoles={["editor", "admin"]}><ManageWordsPage /></ProtectedRoute>} />
             <Route path="/flashcards" element={<ProtectedRoute><FlashcardsPage /></ProtectedRoute>} />

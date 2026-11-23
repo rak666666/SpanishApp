@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getCategories } from "../services/categoryService";
 
-function DashboardPage() {
+function DashBoardPage() {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [error, setError] = useState("");
@@ -105,4 +105,4 @@ function DashboardPage() {
     );
 }
 
-export default DashboardPage;
+export default DashBoardPage;
