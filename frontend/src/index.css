@@ -99,6 +99,14 @@ body {
     cursor: pointer;
 }
 
+.category-list button.active {
+    background-color: #c75b39;
+    color: white;
+    border-color: #c75b39;
+    box-shadow: 0 3px 8px rgba(199, 91, 57, 0.25);
+    font-weight: bold;
+}
+
 /* NAVBAR */
 
 .navbar {
