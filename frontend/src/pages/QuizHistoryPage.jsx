@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { getQuizHistory } from "../services/quizService";
+import ReturnButton from "../components/ReturnButton";
 
 function QuizHistoryPage() {
     const [history, setHistory] = useState([]);
@@ -55,6 +56,7 @@ function QuizHistoryPage() {
                     ))}
                 </div>
             )}
+            <ReturnButton />
         </main>
     );
 }

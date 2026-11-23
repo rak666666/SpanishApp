@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getStatistics } from "../services/statisticsService";
+import ReturnButton from "../components/ReturnButton";
 
 function StatisticsPage() {
     const [statistics, setStatistics] = useState(null);
@@ -109,6 +110,7 @@ function StatisticsPage() {
                         <p>Opanowane</p>
                     </div>
                 </div>
+                <ReturnButton />
             </section>
         </main>
     );

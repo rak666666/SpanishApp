@@ -5,6 +5,7 @@ import {
     getQuizWords,
     saveQuizResult
 } from "../services/quizService";
+import ReturnButton from "../components/ReturnButton";
 
 function normalizeExact(text) {
     return text.trim().toLowerCase().replace(/\s+/g, " ");
@@ -318,7 +319,8 @@ function QuizPage() {
 
                     <button onClick={() => setDirection("pl-es")}>
                         Polski → Hiszpański
-                    </button>
+                    </button> <br /> <br />
+                    <ReturnButton />
                 </section>
             ) : !quizType ? (
                 <section>
@@ -340,7 +342,8 @@ function QuizPage() {
 
                     <button onClick={() => setDirection("")}>
                         Zmień kierunek
-                    </button>
+                    </button><br /><br />
+                    <ReturnButton />
                 </section>
             ) : quizWords.length === 0 ? (
                 <section>
@@ -353,7 +356,8 @@ function QuizPage() {
 
                     <button onClick={() => setQuizType("")}>
                         Zmień sposób odpowiadania
-                    </button>
+                    </button><br /><br />
+                    <ReturnButton />
                 </section>
             ) : finished ? (
                 <section>
@@ -373,7 +377,8 @@ function QuizPage() {
 
                     <button onClick={resetQuiz}>
                         Wróć do wyboru trybu
-                    </button>
+                    </button><br /><br />
+                    <ReturnButton />
                 </section>
             ) : (
                 <section>

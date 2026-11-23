@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getWords } from "../services/wordService";
+import ReturnButton from "../components/ReturnButton";
 
 function WordsPage() {
     const [words, setWords] = useState([]);
@@ -56,6 +57,7 @@ function WordsPage() {
                     ))}
                 </div>
             )}
+        <ReturnButton />
         </main>
     );
 }

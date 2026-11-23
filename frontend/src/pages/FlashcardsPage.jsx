@@ -4,6 +4,8 @@ import {
     getFlashcards,
     saveFlashcardProgress
 } from "../services/flashcardService";
+import ReturnButton from "../components/ReturnButton.jsx"
+
 
 function FlashcardsPage() {
     const location = useLocation();
@@ -81,7 +83,7 @@ function FlashcardsPage() {
                 <button onClick={() => setShowAnswer(!showAnswer)}>
                     {showAnswer ? "Ukryj odpowiedź" : "Pokaż odpowiedź"}
                 </button>
-
+                <p></p>
                 {showAnswer && (
                     <div>
                         <button onClick={() => handleAnswer(true)}>
@@ -98,6 +100,9 @@ function FlashcardsPage() {
             <p>
                 Pozostało fiszek: {flashcards.length}
             </p>
+            <br />
+            <br />
+            <ReturnButton />
         </main>
     );
 }

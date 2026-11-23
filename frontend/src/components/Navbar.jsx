@@ -29,6 +29,11 @@ function Navbar() {
                 <Link to="/quiz-history">
                     Historia quizów
                 </Link>
+                {user.role === "admin" || "editor" && (
+                    <Link to="/manage-words">
+                        Zarządzanie danymi
+                    </Link>
+                )}
 
                 {user.role === "admin" && (
                     <Link to="/admin/users">

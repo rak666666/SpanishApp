@@ -5,6 +5,7 @@ import {
     updateUserRole,
     deleteUser
 } from "../services/userService";
+import ReturnButton from "../components/ReturnButton";
 
 function AdminUsersPage() {
     const [users, setUsers] = useState([]);
@@ -72,6 +73,7 @@ function AdminUsersPage() {
 
     return (
         <main className="dashboard">
+            <ReturnButton />
             <h1>Panel administratora</h1>
             <h2>Zarządzanie użytkownikami</h2>
 

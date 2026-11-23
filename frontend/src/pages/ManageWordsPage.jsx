@@ -15,6 +15,7 @@ import {
     deleteCategory
 } from "../services/categoryService";
 
+import ReturnButton from "../components/ReturnButton";
 function ManageWordsPage() {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
 
@@ -193,6 +194,7 @@ function ManageWordsPage() {
 
     return (
         <main className="dashboard">
+            <ReturnButton/>
             <h1>Zarządzanie</h1>
 
             <div className="management-tabs">
