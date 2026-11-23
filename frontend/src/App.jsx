@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import DashboardPage from "./pages/DashboardPage";
+import DashBoardPage from "./pages/DashBoardPage";
 import WordsPage from "./pages/WordsPage";
 import ManageWordsPage from "./pages/ManageWordsPage";
 import FlashcardsPage from "./pages/FlashcardsPage";
