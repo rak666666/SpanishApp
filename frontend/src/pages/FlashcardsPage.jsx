@@ -77,19 +77,21 @@ function FlashcardsPage() {
             <section className="flashcard">
                 <h2>{currentCard.spanish_word}</h2>
 
-                {currentCard.image_url && (
+            {currentCard.image_url ? (
+                <div>
                     <img
                         src={currentCard.image_url}
                         alt={currentCard.spanish_word}
                         style={{
-                            maxWidth: "300px",
-                            maxHeight: "220px",
-                            objectFit: "contain",
-                            display: "block",
+                            maxWidth: "200px",
+                            maxHeight: "120px",
                             margin: "15px auto"
                         }}
                     />
-                )}
+                </div>
+            ) : (
+                <p>Brak obrazka dla tego słówka.</p>
+            )}
 
                 {showAnswer && (
                     <p>{currentCard.polish_translation}</p>
