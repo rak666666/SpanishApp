@@ -400,6 +400,7 @@ function QuizPage() {
                         <div>
                             {questionOptions.map((option, index) => (
                                 <button
+                                    className="QuizAnswers"
                                     key={index}
                                     onClick={() => setSelectedAnswer(option)}
                                     disabled={checked}

@@ -114,6 +114,8 @@ function ManageWordsPage() {
     }
 
     function handleWordEdit(word) {
+            console.log("Edytowane słówko:", word);
+    console.log("ID kategorii:", word.category_id)
         setSpanishWord(word.spanish_word);
         setPolishTranslation(word.polish_translation);
         setWordCategoryId(String(word.category_id));
@@ -301,11 +303,12 @@ function ManageWordsPage() {
                     </form>
 
                     <h2>Lista słówek</h2>
-
+                    
                     {words.length === 0 ? (
                         <p>Nie ma jeszcze żadnych słówek.</p>
                     ) : (
-                        words.map((word) => (
+                        <div className="word-cards">
+                        {words.map((word) => (
                             <div className="word-card" key={word.id}>
                                 {word.image_url && (
                                     <img
@@ -333,7 +336,7 @@ function ManageWordsPage() {
                                     </button>
                                 )}
                             </div>
-                        ))
+                        ))} </div>
                     )}
                 </section>
             )}

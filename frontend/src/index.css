@@ -11,8 +11,6 @@ body {
     color: #252525;
 }
 
-/* LOGOWANIE */
-
 .login-page {
     min-height: 100vh;
     display: flex;
@@ -27,7 +25,6 @@ body {
     padding: 40px;
     background-color: white;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .login-container h1 {
@@ -70,8 +67,6 @@ body {
     text-decoration: none;
 }
 
-/* DASHBOARD */
-
 .dashboard {
     min-height: 100vh;
     padding: 40px;
@@ -103,11 +98,8 @@ body {
     background-color: #a12803;
     color: white;
     border-color: #c75b39;
-    box-shadow: 0 3px 8px rgba(199, 91, 57, 0.25);
     font-weight: bold;
 }
-
-/* NAVBAR */
 
 .navbar {
     display: flex;
@@ -115,7 +107,6 @@ body {
     align-items: center;
     padding: 20px 40px;
     background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .navbar-logo {
@@ -151,76 +142,37 @@ body {
     cursor: pointer;
 }
 
-/* KARTY */
-
 .learning-cards {
+    display: flex;
+    gap: 20px;
+}
+.learning-card {
+    flex: 1 1 200px;
+}
+.AnswersButtons{
+    margin-top: 10px;
+}
+.AnswerButton{
+    margin-right: 15px;
+}
+.QuizAnswers{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.word-card{
+    border : 1px solid black ;
+    border-radius: 0;
+    min-width: 150px; 
+}
+.word-cards{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
-
-.learning-card {
-    flex: 1 1 200px;
-    min-width: 0;
+.flashcard h2{
+    font-size: 30px;
 }
-
-/* TELEFONY I TABLETY */
-
-@media (max-width: 768px) {
-    .navbar {
-        padding: 16px 20px;
-    }
-
-    .navbar-links {
-        gap: 15px;
-    }
-
-    .dashboard {
-        padding: 25px 20px;
-    }
-
-    .dashboard h1 {
-        margin-bottom: 25px;
-        font-size: 26px;
-    }
-
-    .learning-cards {
-        gap: 12px;
-    }
-}
-
-/* MAŁE TELEFONY */
-
-@media (max-width: 480px) {
-    .navbar {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .navbar-links {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .navbar-logo {
-        font-size: 24px;
-    }
-
-    .dashboard {
-        padding: 20px 15px;
-    }
-
-    .dashboard h1 {
-        font-size: 23px;
-    }
-
-    .learning-card {
-        flex: 1 1 100%;
-    }
-
-    .login-container {
-        padding: 25px 20px;
-    }
+.flashcard h3{
+    font-size: 30px;
+    margin-bottom: 10px;
 }

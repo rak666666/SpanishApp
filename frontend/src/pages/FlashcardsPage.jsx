@@ -83,8 +83,8 @@ function FlashcardsPage() {
                         src={currentCard.image_url}
                         alt={currentCard.spanish_word}
                         style={{
-                            maxWidth: "200px",
-                            maxHeight: "120px",
+                            maxWidth: "250px",
+                            maxHeight: "200px",
                             margin: "15px auto"
                         }}
                     />
@@ -94,7 +94,7 @@ function FlashcardsPage() {
             )}
 
                 {showAnswer && (
-                    <p>{currentCard.polish_translation}</p>
+                    <h3>{currentCard.polish_translation}</h3> 
                 )}
 
                 <button onClick={() => setShowAnswer(!showAnswer)}>
@@ -102,12 +102,12 @@ function FlashcardsPage() {
                 </button>
 
                 {showAnswer && (
-                    <div>
-                        <button onClick={() => handleAnswer(true)}>
+                    <div className="AnswersButtons">
+                        <button className="AnswerButton" onClick={() => handleAnswer(true)}>
                             Znam
                         </button>
 
-                        <button onClick={() => handleAnswer(false)}>
+                        <button className="AnswerButton" onClick={() => handleAnswer(false)}>
                             Nie znam
                         </button>
                     </div>

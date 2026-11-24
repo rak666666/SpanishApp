@@ -3,6 +3,7 @@ const db = require("../config/db");
 const cloudinary = require("../config/cloudinary");
 
 // Pobieranie wszystkich słówek
+// Pobieranie wszystkich słówek
 const getWords = async (req, res) => {
     try {
         const [words] = await db.query(
@@ -10,6 +11,7 @@ const getWords = async (req, res) => {
                 words.id,
                 words.spanish_word,
                 words.polish_translation,
+                words.category_id,
                 words.image_id,
                 files.storage_path AS image_url,
                 categories.name AS category_name
