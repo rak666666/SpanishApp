@@ -47,3 +47,26 @@ export async function deleteWord(id) {
         method: "DELETE"
     });
 }
+
+export async function uploadWordImage(id, image) {
+    const token = localStorage.getItem("token");
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const response = await fetch(`${WORDS_URL}/${id}/image`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        body: formData
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.message || "Nie udało się przesłać obrazka");
+    }
+
+    return data;
+}

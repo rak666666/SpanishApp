@@ -5,7 +5,8 @@ import {
     getWords,
     createWord,
     updateWord,
-    deleteWord
+    deleteWord,
+    uploadWordImage
 } from "../services/wordService";
 
 import {
@@ -16,6 +17,7 @@ import {
 } from "../services/categoryService";
 
 import ReturnButton from "../components/ReturnButton";
+
 function ManageWordsPage() {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
 
@@ -35,6 +37,8 @@ function ManageWordsPage() {
     const [polishTranslation, setPolishTranslation] = useState("");
     const [wordCategoryId, setWordCategoryId] = useState("");
     const [editingWordId, setEditingWordId] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [uploadingImage, setUploadingImage] = useState(false);
 
     // Formularz kategorii
     const [categoryName, setCategoryName] = useState("");
@@ -75,18 +79,29 @@ function ManageWordsPage() {
         };
 
         try {
+            let wordId = editingWordId;
+
             if (editingWordId) {
                 await updateWord(editingWordId, wordData);
                 setMessage("Słówko zostało zaktualizowane.");
             } else {
-                await createWord(wordData);
+                const result = await createWord(wordData);
+                wordId = result.id;
                 setMessage("Słówko zostało dodane.");
+            }
+
+            if (selectedImage) {
+                setUploadingImage(true);
+                await uploadWordImage(wordId, selectedImage);
+                setMessage("Słówko i obrazek zostały zapisane.");
             }
 
             resetWordForm();
             await loadData();
         } catch (e) {
             setError(e.message);
+        } finally {
+            setUploadingImage(false);
         }
     }
 
@@ -95,6 +110,7 @@ function ManageWordsPage() {
         setPolishTranslation("");
         setWordCategoryId("");
         setEditingWordId(null);
+        setSelectedImage(null);
     }
 
     function handleWordEdit(word) {
@@ -102,6 +118,7 @@ function ManageWordsPage() {
         setPolishTranslation(word.polish_translation);
         setWordCategoryId(String(word.category_id));
         setEditingWordId(word.id);
+        setSelectedImage(null);
     }
 
     async function handleWordDelete(id) {
@@ -194,7 +211,8 @@ function ManageWordsPage() {
 
     return (
         <main className="dashboard">
-            <ReturnButton/>
+            <ReturnButton />
+
             <h1>Zarządzanie</h1>
 
             <div className="management-tabs">
@@ -254,8 +272,25 @@ function ManageWordsPage() {
                             ))}
                         </select>
 
-                        <button type="submit">
-                            {editingWordId ? "Zapisz zmiany" : "Dodaj słówko"}
+                        <label>Obrazek (opcjonalnie)</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                                setSelectedImage(e.target.files[0] || null);
+                            }}
+                        />
+
+                        {selectedImage && (
+                            <p>Wybrany plik: {selectedImage.name}</p>
+                        )}
+
+                        <button type="submit" disabled={uploadingImage}>
+                            {uploadingImage
+                                ? "Przesyłanie obrazka..."
+                                : editingWordId
+                                    ? "Zapisz zmiany"
+                                    : "Dodaj słówko"}
                         </button>
 
                         {editingWordId && (
@@ -272,6 +307,18 @@ function ManageWordsPage() {
                     ) : (
                         words.map((word) => (
                             <div className="word-card" key={word.id}>
+                                {word.image_url && (
+                                    <img
+                                        src={word.image_url}
+                                        alt={word.spanish_word}
+                                        style={{
+                                            width: "150px",
+                                            height: "120px",
+                                            objectFit: "cover"
+                                        }}
+                                    />
+                                )}
+
                                 <h3>{word.spanish_word}</h3>
                                 <p>{word.polish_translation}</p>
                                 <p>Kategoria: {word.category_name}</p>

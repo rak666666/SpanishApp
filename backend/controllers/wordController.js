@@ -1,20 +1,24 @@
+
 const db = require("../config/db");
+const cloudinary = require("../config/cloudinary");
 
 // Pobieranie wszystkich słówek
 const getWords = async (req, res) => {
     try {
         const [words] = await db.query(
-            `SELECT 
+            `SELECT
                 words.id,
                 words.spanish_word,
                 words.polish_translation,
+                words.image_id,
+                files.storage_path AS image_url,
                 categories.name AS category_name
             FROM words
-            JOIN categories ON words.category_id = categories.id`
+            JOIN categories ON words.category_id = categories.id
+            LEFT JOIN files ON words.image_id = files.id`
         );
 
         res.json(words);
-
     } catch (error) {
         console.error(error);
         res.status(500).json({
@@ -23,8 +27,8 @@ const getWords = async (req, res) => {
     }
 };
 
-    //Dodawanie słówek
-    const createWord = async (req, res) => {
+// Dodawanie słówek
+const createWord = async (req, res) => {
     try {
         const {
             spanish_word,
@@ -57,7 +61,6 @@ const getWords = async (req, res) => {
             message: "Słówko zostało dodane",
             id: result.insertId
         });
-
     } catch (error) {
         console.error(error);
 
@@ -73,8 +76,8 @@ const getWords = async (req, res) => {
     }
 };
 
-    //Edytowanie słówek
-    const updateWord = async (req, res) => {
+// Edytowanie słówek
+const updateWord = async (req, res) => {
     try {
         const { id } = req.params;
         const {
@@ -116,7 +119,6 @@ const getWords = async (req, res) => {
         res.json({
             message: "Słówko zostało zaktualizowane"
         });
-
     } catch (error) {
         console.error(error);
 
@@ -132,8 +134,76 @@ const getWords = async (req, res) => {
     }
 };
 
-    //Usuwanie słówek
-    const deleteWord = async (req, res) => {
+// Przesyłanie obrazka do słówka
+const uploadWordImage = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (!req.file) {
+            return res.status(400).json({
+                message: "Nie wybrano obrazka"
+            });
+        }
+
+        const [words] = await db.query(
+            "SELECT id FROM words WHERE id = ?",
+            [id]
+        );
+
+        if (words.length === 0) {
+            return res.status(404).json({
+                message: "Nie znaleziono słówka"
+            });
+        }
+
+        const result = await new Promise((resolve, reject) => {
+            const stream = cloudinary.uploader.upload_stream(
+                {
+                    folder: "spanishapp"
+                },
+                (error, result) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(result);
+                    }
+                }
+            );
+
+            stream.end(req.file.buffer);
+        });
+
+        const [fileResult] = await db.query(
+            `INSERT INTO files
+            (filename, storage_path, uploaded_by)
+            VALUES (?, ?, ?)`,
+            [
+                req.file.originalname,
+                result.secure_url,
+                req.user.id
+            ]
+        );
+
+        await db.query(
+            "UPDATE words SET image_id = ? WHERE id = ?",
+            [fileResult.insertId, id]
+        );
+
+        res.json({
+            message: "Obrazek został dodany",
+            image_url: result.secure_url
+        });
+    } catch (error) {
+        console.error("Błąd przesyłania obrazka:", error);
+
+        res.status(500).json({
+            message: "Błąd podczas przesyłania obrazka"
+        });
+    }
+};
+
+// Usuwanie słówek
+const deleteWord = async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -151,7 +221,6 @@ const getWords = async (req, res) => {
         res.json({
             message: "Słówko zostało usunięte"
         });
-
     } catch (error) {
         console.error(error);
 
@@ -171,5 +240,6 @@ module.exports = {
     getWords,
     createWord,
     updateWord,
+    uploadWordImage,
     deleteWord
 };
