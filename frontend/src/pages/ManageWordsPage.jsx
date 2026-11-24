@@ -274,7 +274,7 @@ function ManageWordsPage() {
                             ))}
                         </select>
 
-                        <label>Obrazek (opcjonalnie)</label>
+                        <label>Obrazek</label>
                         <input
                             type="file"
                             accept="image/*"
