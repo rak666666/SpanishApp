@@ -312,6 +312,7 @@ function ManageWordsPage() {
                             <div className="word-card" key={word.id}>
                                 {word.image_url && (
                                     <img
+                                        className="WordImage"
                                         src={word.image_url}
                                         alt={word.spanish_word}
                                         style={{
@@ -383,7 +384,7 @@ function ManageWordsPage() {
                         <p>Nie ma jeszcze żadnych kategorii.</p>
                     ) : (
                         categories.map((category) => (
-                            <div className="word-card" key={category.id}>
+                            <div className="category-card" key={category.id}>
                                 <h3>{category.name}</h3>
                                 <p>{category.description}</p>
 

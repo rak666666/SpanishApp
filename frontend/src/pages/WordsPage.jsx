@@ -49,7 +49,7 @@ function WordsPage() {
             ) : (
                 <div className="words-list">
                     {filteredWords.map((word) => (
-                        <div className="word-card" key={word.id}>
+                        <div className="word" key={word.id}>
                             <h3>{word.spanish_word}</h3>
                             <p>{word.polish_translation}</p>
                             <p>Kategoria: {word.category_name}</p>

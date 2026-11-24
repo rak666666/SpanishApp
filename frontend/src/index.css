@@ -162,7 +162,12 @@ body {
 .word-card{
     border : 1px solid black ;
     border-radius: 0;
-    min-width: 150px; 
+    min-width: 190px;
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 .word-cards{
     display: flex;
@@ -174,5 +179,13 @@ body {
 }
 .flashcard h3{
     font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.WordImage{
+    min-width: 150px;
+    max-width: 150px;
+}
+.category-card button{
     margin-bottom: 10px;
 }
