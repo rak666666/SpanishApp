@@ -29,12 +29,11 @@ function Navbar() {
                 <Link to="/quiz-history">
                     Historia quizów
                 </Link>
-                {user.role === "admin" || "editor" && (
+                {["admin", "editor"].includes(user.role) && (
                     <Link to="/manage-words">
                         Zarządzanie danymi
                     </Link>
                 )}
-
                 {user.role === "admin" && (
                     <Link to="/admin/users">
                         Panel administratora

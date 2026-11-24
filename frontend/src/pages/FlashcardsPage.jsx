@@ -1,11 +1,11 @@
+
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
     getFlashcards,
     saveFlashcardProgress
 } from "../services/flashcardService";
-import ReturnButton from "../components/ReturnButton.jsx"
-
+import ReturnButton from "../components/ReturnButton.jsx";
 
 function FlashcardsPage() {
     const location = useLocation();
@@ -63,6 +63,7 @@ function FlashcardsPage() {
             <main className="dashboard">
                 <h1>Fiszki</h1>
                 <p>Na ten moment nie ma słówek do powtórki!</p>
+                <ReturnButton />
             </main>
         );
     }
@@ -76,6 +77,20 @@ function FlashcardsPage() {
             <section className="flashcard">
                 <h2>{currentCard.spanish_word}</h2>
 
+                {currentCard.image_url && (
+                    <img
+                        src={currentCard.image_url}
+                        alt={currentCard.spanish_word}
+                        style={{
+                            maxWidth: "300px",
+                            maxHeight: "220px",
+                            objectFit: "contain",
+                            display: "block",
+                            margin: "15px auto"
+                        }}
+                    />
+                )}
+
                 {showAnswer && (
                     <p>{currentCard.polish_translation}</p>
                 )}
@@ -83,7 +98,7 @@ function FlashcardsPage() {
                 <button onClick={() => setShowAnswer(!showAnswer)}>
                     {showAnswer ? "Ukryj odpowiedź" : "Pokaż odpowiedź"}
                 </button>
-                <p></p>
+
                 {showAnswer && (
                     <div>
                         <button onClick={() => handleAnswer(true)}>
@@ -100,8 +115,10 @@ function FlashcardsPage() {
             <p>
                 Pozostało fiszek: {flashcards.length}
             </p>
+
             <br />
             <br />
+
             <ReturnButton />
         </main>
     );
