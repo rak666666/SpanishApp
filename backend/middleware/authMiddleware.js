@@ -2,7 +2,6 @@
 const jwt = require("jsonwebtoken");
 const db = require("../config/db");
 
-// Sprawdzanie tokenu i aktualnej roli użytkownika
 const authenticateToken = async (req, res, next) => {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
@@ -54,7 +53,6 @@ const authenticateToken = async (req, res, next) => {
     }
 };
 
-// Sprawdzanie uprawnień
 const authorizeRoles = (...roles) => {
     return (req, res, next) => {
         if (!req.user || !roles.includes(req.user.role)) {

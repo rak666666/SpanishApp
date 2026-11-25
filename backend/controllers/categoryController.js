@@ -1,6 +1,6 @@
 const db = require("../config/db");
 
-// Pobieranie kategorii
+
 const getCategories = async (req, res) => {
     try {
         const [categories] = await db.query(
@@ -16,7 +16,6 @@ const getCategories = async (req, res) => {
     }
 };
 
-// Dodawanie kategorii
 const createCategory = async (req, res) => {
     try {
         const { name, description } = req.body;
@@ -52,7 +51,6 @@ const createCategory = async (req, res) => {
     }
 };
 
-// Edycja kategorii
 const updateCategory = async (req, res) => {
     try {
         const { id } = req.params;
@@ -101,7 +99,6 @@ const updateCategory = async (req, res) => {
     }
 };
 
-// Usuwanie kategorii
 const deleteCategory = async (req, res) => {
     try {
         const { id } = req.params;

@@ -32,7 +32,6 @@ function ManageWordsPage() {
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(true);
 
-    // Formularz słówek
     const [spanishWord, setSpanishWord] = useState("");
     const [polishTranslation, setPolishTranslation] = useState("");
     const [wordCategoryId, setWordCategoryId] = useState("");
@@ -40,7 +39,6 @@ function ManageWordsPage() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [uploadingImage, setUploadingImage] = useState(false);
 
-    // Formularz kategorii
     const [categoryName, setCategoryName] = useState("");
     const [categoryDescription, setCategoryDescription] = useState("");
     const [editingCategoryId, setEditingCategoryId] = useState(null);
@@ -65,7 +63,6 @@ function ManageWordsPage() {
         loadData();
     }, [loadData]);
 
-    // Dodawanie i edytowanie słówek
     async function handleWordSubmit(e) {
         e.preventDefault();
 
@@ -145,7 +142,6 @@ function ManageWordsPage() {
         }
     }
 
-    // Dodawanie i edytowanie kategorii
     async function handleCategorySubmit(e) {
         e.preventDefault();
 

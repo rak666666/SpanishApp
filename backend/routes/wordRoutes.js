@@ -18,10 +18,8 @@ const {
 
 const upload = require("../middleware/upload");
 
-// Pobieranie słówek - dostępne dla wszystkich
 router.get("/", getWords);
 
-// Dodawanie - editor i admin
 router.post(
     "/",
     authenticateToken,
@@ -29,7 +27,6 @@ router.post(
     createWord
 );
 
-// Edycja - editor i admin
 router.put(
     "/:id",
     authenticateToken,
@@ -37,7 +34,6 @@ router.put(
     updateWord
 );
 
-// Przesyłanie obrazka - editor i admin
 router.post(
     "/:id/image",
     authenticateToken,
@@ -46,7 +42,6 @@ router.post(
     uploadWordImage
 );
 
-// Usuwanie - tylko admin
 router.delete(
     "/:id",
     authenticateToken,

@@ -2,8 +2,6 @@
 const db = require("../config/db");
 const cloudinary = require("../config/cloudinary");
 
-// Pobieranie wszystkich słówek
-// Pobieranie wszystkich słówek
 const getWords = async (req, res) => {
     try {
         const [words] = await db.query(
@@ -29,7 +27,6 @@ const getWords = async (req, res) => {
     }
 };
 
-// Dodawanie słówek
 const createWord = async (req, res) => {
     try {
         const {
@@ -78,7 +75,6 @@ const createWord = async (req, res) => {
     }
 };
 
-// Edytowanie słówek
 const updateWord = async (req, res) => {
     try {
         const { id } = req.params;
@@ -136,7 +132,6 @@ const updateWord = async (req, res) => {
     }
 };
 
-// Przesyłanie obrazka do słówka
 const uploadWordImage = async (req, res) => {
     try {
         const { id } = req.params;
@@ -204,7 +199,6 @@ const uploadWordImage = async (req, res) => {
     }
 };
 
-// Usuwanie słówek
 const deleteWord = async (req, res) => {
     try {
         const { id } = req.params;

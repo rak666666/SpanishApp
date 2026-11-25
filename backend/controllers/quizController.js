@@ -35,7 +35,6 @@ const saveQuizResult = async (req, res) => {
         const userId = req.user.id;
         const { score, totalQuestions, answers } = req.body;
 
-        // Podstawowa walidacja danych
         if (
             !Number.isInteger(score) ||
             !Number.isInteger(totalQuestions) ||
@@ -55,7 +54,6 @@ const saveQuizResult = async (req, res) => {
             });
         }
 
-        // Sprawdzanie każdej odpowiedzi
         for (const answer of answers) {
             if (
                 !Number.isInteger(answer.wordId) ||
@@ -68,7 +66,6 @@ const saveQuizResult = async (req, res) => {
             }
         }
 
-        // Nie pozwalamy na powtórzone słówka
         const wordIds = answers.map(answer => answer.wordId);
 
         if (new Set(wordIds).size !== wordIds.length) {
@@ -77,7 +74,6 @@ const saveQuizResult = async (req, res) => {
             });
         }
 
-        // Wynik musi zgadzać się z odpowiedziami
         const calculatedScore = answers.filter(
             answer => answer.correct
         ).length;
@@ -93,7 +89,6 @@ const saveQuizResult = async (req, res) => {
         await connection.beginTransaction();
         transactionStarted = true;
 
-        // Sprawdzamy, czy wszystkie słówka istnieją
         const placeholders = wordIds.map(() => "?").join(", ");
 
         const [words] = await connection.query(
@@ -110,7 +105,6 @@ const saveQuizResult = async (req, res) => {
             });
         }
 
-        // Zapisujemy wynik quizu dla zalogowanego użytkownika
         await connection.query(
             `INSERT INTO quiz_results
              (user_id, score, total_questions)

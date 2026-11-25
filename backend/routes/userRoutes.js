@@ -14,7 +14,6 @@ const {
     authorizeRoles
 } = require("../middleware/authMiddleware");
 
-// Wszystkie operacje dostępne tylko dla administratora
 router.get(
     "/",
     authenticateToken,

@@ -1,7 +1,6 @@
 
 const express = require("express");
 const cors = require("cors");
-const db = require("./config/db");
 require("dotenv").config();
 
 const categoryRoutes = require("./routes/categoryRoutes");
@@ -32,22 +31,6 @@ app.use(express.json({ limit: "100kb" }));
 app.get("/", (req, res) => {
     res.send("SpanishApp API działa!");
 });
-
-// Tymczasowy test połączenia z bazą
-if (process.env.NODE_ENV !== "production") {
-    app.get("/test-db", async (req, res) => {
-        try {
-            const [rows] = await db.query("SHOW TABLES");
-            res.json(rows);
-        } catch (error) {
-            console.error(error);
-
-            res.status(500).send(
-                "Błąd połączenia z bazą danych"
-            );
-        }
-    });
-}
 
 app.use("/categories", categoryRoutes);
 app.use("/words", wordRoutes);

@@ -2,12 +2,10 @@ const db = require("../config/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-// Rejestracja użytkownika
 const register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-        // Walidacja
         if (
             typeof username !== "string" ||
             typeof email !== "string" ||
@@ -27,7 +25,6 @@ const register = async (req, res) => {
             });
         }
 
-        // Sprawdzanie, czy użytkownik już istnieje
         const [existingUsers] = await db.query(
             "SELECT id FROM users WHERE username = ? OR email = ?",
             [username.trim(), email.trim()]
@@ -39,7 +36,6 @@ const register = async (req, res) => {
             });
         }
 
-        // Hashowanie hasła
         const passwordHash = await bcrypt.hash(password, 10);
 
         // Dodawanie użytkownika
@@ -68,7 +64,6 @@ const register = async (req, res) => {
         });
     }
 };
-// Logowanie użytkownika
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -84,7 +79,6 @@ const login = async (req, res) => {
             });
         }
 
-        // Pobieranie użytkownika z bazy
         const [users] = await db.query(
             `SELECT
                 users.id,
@@ -106,7 +100,6 @@ const login = async (req, res) => {
 
         const user = users[0];
 
-        // Sprawdzanie hasła
         const passwordMatches = await bcrypt.compare(
             password,
             user.password_hash
@@ -118,7 +111,6 @@ const login = async (req, res) => {
             });
         }
 
-        // Generowanie tokenu JWT
         const token = jwt.sign(
             {
                 id: user.id,

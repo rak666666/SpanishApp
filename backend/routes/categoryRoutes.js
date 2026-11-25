@@ -14,10 +14,8 @@ const {
     authorizeRoles
 } = require("../middleware/authMiddleware");
 
-// Pobieranie kategorii - dostępne dla wszystkich
 router.get("/", getCategories);
 
-// Dodawanie - editor i admin
 router.post(
     "/",
     authenticateToken,
@@ -25,7 +23,6 @@ router.post(
     createCategory
 );
 
-// Edycja - editor i admin
 router.put(
     "/:id",
     authenticateToken,
@@ -33,7 +30,6 @@ router.put(
     updateCategory
 );
 
-// Usuwanie - tylko admin
 router.delete(
     "/:id",
     authenticateToken,
