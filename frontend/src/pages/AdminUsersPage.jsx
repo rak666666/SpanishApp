@@ -66,7 +66,7 @@ function AdminUsersPage() {
             setError(e.message);
         }
     }
-
+ 
     if (loading) {
         return <main className="dashboard">Ładowanie użytkowników...</main>;
     }
